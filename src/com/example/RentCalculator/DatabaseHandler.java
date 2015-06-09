@@ -26,6 +26,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     private static final String KEY_INTEREST = "interest";
     private static final String KEY_DOWN_PAYMENT = "downPayment";
 
+    // Creates Database
     public DatabaseHandler(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
@@ -88,7 +89,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     // Get All Properties
     public List<Property> getAllProperties() {
         // Getting All Properties
-        List<Property> propertyList = new ArrayList<Property>();
+        List<Property> propertyList = new ArrayList<>();
 
         // Select All Query
         String selectQuery = "SELECT * FROM " + TABLE_PROPERTIES;

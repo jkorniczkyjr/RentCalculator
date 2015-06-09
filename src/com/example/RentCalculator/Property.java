@@ -5,10 +5,10 @@ public class Property {
     // Private Variables
     int _id;
     String _address;
-    int _purchasePrice;
+    double _purchasePrice;
     int _term;
     double _interest;
-    int _downPayment;
+    double _downPayment;
 
     // Empty Constructor
 
@@ -17,8 +17,8 @@ public class Property {
     }
 
     // Constructor
-    public Property(int id, String address, int purchasePrice, int term,
-                    double interest, int downPayment){
+    public Property(int id, String address, double purchasePrice, int term,
+                    double interest, double downPayment){
         this._id = id;
         this._address = address;
         this._purchasePrice = purchasePrice;
@@ -28,8 +28,8 @@ public class Property {
     }
 
     // Constructor
-    public Property(String address, int purchasePrice, int term,
-                    double interest, int downPayment){
+    public Property(String address, double purchasePrice, int term,
+                    double interest, double downPayment){
         this._address = address;
         this._purchasePrice = purchasePrice;
         this._term = term;
@@ -54,11 +54,11 @@ public class Property {
         this._address = _address;
     }
 
-    public int get_purchasePrice() {
+    public double get_purchasePrice() {
         return _purchasePrice;
     }
 
-    public void set_purchasePrice(int _purchasePrice) {
+    public void set_purchasePrice(double _purchasePrice) {
         this._purchasePrice = _purchasePrice;
     }
 
@@ -78,11 +78,11 @@ public class Property {
         this._interest = _interest;
     }
 
-    public int get_downPayment() {
+    public double get_downPayment() {
         return _downPayment;
     }
 
-    public void set_downPayment(int _downPayment) {
+    public void set_downPayment(double _downPayment) {
         this._downPayment = _downPayment;
     }
 

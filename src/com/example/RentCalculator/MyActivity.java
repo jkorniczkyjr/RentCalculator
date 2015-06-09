@@ -2,6 +2,7 @@ package com.example.RentCalculator;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -24,14 +25,17 @@ public class MyActivity extends Activity {
         EditText _term = (EditText) findViewById(R.id.inputTerm);
         EditText _interest = (EditText) findViewById(R.id.inputInterest);
         EditText _downPayment= (EditText) findViewById(R.id.inputDownPayment);
+        EditText _address = (EditText) findViewById(R.id.inputAddress);
 
         // Outputs
         TextView _monthlyRent =
                 (TextView) findViewById(R.id.outputMonthlyPayment);
 
-        Double purchasePrice, interest, monthlyRent, downPayment;
-        Integer term;
+        String address;
+        double purchasePrice, interest, monthlyRent, downPayment;
+        int term;
 
+        address = _address.getText().toString();
         purchasePrice = Double.parseDouble(_purchasePrice.getText().toString());
         term = Integer.parseInt(_term.getText().toString());
         // Converts APR to Monthly Rate
@@ -39,13 +43,22 @@ public class MyActivity extends Activity {
         downPayment = Double.parseDouble(_downPayment.getText().toString());
 
         // Calculate Total Loan Amount
-        purchasePrice -= downPayment;
+        purchasePrice = (1 - (downPayment/100)) * purchasePrice ;
 
         // Calculate Monthly Rent
         monthlyRent = purchasePrice *
                 (interest * Math.pow(1 + interest, term)) /
                 (Math.pow(1 + interest, term) - 1);
 
+        DatabaseHandler db = new DatabaseHandler(this);
+
+        /**
+         * CRUD Operations
+         */
+
+        Log.d("Insert:", "Inserting ..");
+        db.addProperty(new Property(address, purchasePrice, term, interest,
+                downPayment));
         //Converts variables to 2 Decimal Places
         DecimalFormat df = new DecimalFormat("#.##");
 
